@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -368,6 +368,7 @@
             <i class="fa-solid fa-leaf text-teal-500 text-2xl mb-4"></i>
             <p class="font-medium text-slate-200">Trabajo: Sostenibilidad Aplicada al Sistema Productivo</p>
             <p class="text-sm mt-2">Realizado por <span class="text-white font-semibold">Da Cunha Goncalves_Ana Maria</span></p>
+	<p>&copy; <span id="fecha-actual"></span> Tarea 1 . IES Avempace - Curso 2026/2027 - Todos los derechos reservados.</p>
         </div>
     </footer>
 
@@ -502,6 +503,9 @@
             }, 10);
         }
 
+  // Opción 2: Mostrar la fecha completa (ej. 30/10/2026)
+     document.getElementById("fecha-actual").textContent = new Date().toLocaleDateString('es-ES');
+  
         function closeModal() {
             modalOverlay.classList.add('opacity-0');
             modalBox.classList.remove('scale-100');
