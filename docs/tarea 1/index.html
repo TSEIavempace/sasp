@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sostenibilidad Aplicada al Sistema Productivo</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuración personalizada de Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        pastel: {
+                            mint: '#A7F3D0',    // emerald-200
+                            sky: '#BAE6FD',     // sky-200
+                            yellow: '#FEF08A',  // yellow-200
+                            earth: '#FFEDD5',   // orange-100
+                            rose: '#FECDD3',    // rose-200
+                            green: '#bbf7d0',   // green-200
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Estilos CSS personalizados para animaciones y detalles -->
+    <style>
+        body {
+            background-color: #f8fafc; /* slate-50 */
+        }
+        
+        /* Animaciones Personalizadas */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .spin-slow {
+            animation: spin 8s linear infinite;
+        }
+
+        .float-anim {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Estilos del Acordeón */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+        }
+        
+        .accordion-content.open {
+            max-height: 1000px; /* Suficientemente grande para el contenido */
+        }
+
+        .accordion-btn.active .acc-icon {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="text-slate-700 antialiased selection:bg-teal-300 selection:text-teal-900">
+
+    <!-- HERO BANNER -->
+    <header class="relative overflow-hidden bg-gradient-to-br from-pastel-mint via-pastel-sky to-pastel-yellow pt-24 pb-32 px-6 sm:px-12 text-center shadow-lg rounded-b-[3rem] mb-16">
+        <!-- Decoraciones de fondo -->
+        <div class="absolute top-10 left-10 text-teal-400/30 text-6xl float-anim"><i class="fa-solid fa-leaf"></i></div>
+        <div class="absolute bottom-10 right-20 text-sky-400/30 text-8xl spin-slow"><i class="fa-solid fa-recycle"></i></div>
+        
+        <div class="max-w-4xl mx-auto relative z-10 fade-in-up element-to-animate">
+            <div class="inline-block bg-white/60 backdrop-blur-md px-6 py-2 rounded-full text-sm font-semibold tracking-wider text-teal-800 mb-6 shadow-sm border border-white/50">
+                Sostenibilidad Aplicada al Sistema Productivo
+            </div>
+            <h1 class="font-heading text-4xl sm:text-5xl md:text-6xl font-bold text-slate-800 mb-6 leading-tight">
+                Transición de la Economía <span class="text-rose-500">Lineal</span> a la Economía <span class="text-teal-600">Circular</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-600 mb-8 font-medium">
+                Módulo: SASP · Tarea: 1
+            </p>
+            <div class="flex items-center justify-center gap-3 text-slate-700 bg-white/50 w-fit mx-auto px-5 py-3 rounded-2xl shadow-sm backdrop-blur-sm border border-white">
+                <i class="fa-solid fa-user-graduate text-teal-600 text-xl"></i>
+                <span class="font-semibold">Alumno/a:</span> Da Cunha Goncalves_Ana Maria
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 mb-24 space-y-24">
+
+        <!-- ACTIVIDAD 1: ACORDEÓN -->
+        <section class="fade-in-up element-to-animate">
+            <div class="flex items-center gap-4 mb-10">
+                <div class="bg-teal-100 p-4 rounded-2xl text-teal-600 shadow-sm">
+                    <i class="fa-solid fa-clipboard-question text-2xl"></i>
+                </div>
+                <h2 class="font-heading text-3xl font-bold text-slate-800">Actividad 1: Cuestionario sobre Economía Circular</h2>
+            </div>
+
+            <div class="space-y-4">
+                <!-- Pregunta 1 -->
+                <div class="bg-white border border-slate-200 rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
+                    <button class="accordion-btn w-full px-6 py-5 flex justify-between items-center bg-white text-left focus:outline-none">
+                        <span class="font-heading font-semibold text-lg text-slate-800 pr-4">
+                            1. Explica brevemente en qué consiste la Economía Circular y cómo se diferencia de la Economía Lineal.
+                        </span>
+                        <i class="fa-solid fa-chevron-down acc-icon text-teal-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content bg-slate-50/50 border-t border-slate-100 px-6">
+                        <div class="py-5 text-slate-600 space-y-4">
+                            <p>La <strong>Economía Circular (EC)</strong> es un modelo de producción y consumo regenerativo que busca mantener productos, componentes y materiales en su mayor nivel de utilidad y valor durante el máximo tiempo posible. A través del ecodiseño, la reparación, la reutilización, la remanufactura y el reciclaje, los residuos se transforman de nuevo en recursos dentro de un ciclo cerrado.</p>
+                            <p>Por el contrario, la <strong>Economía Lineal (EL)</strong> se basa en un sistema unidireccional de «extraer, producir, consumir y desechar», que asume erróneamente que los recursos naturales son infinitos y termina acumulando residuos en vertederos o incineradoras.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pregunta 2 -->
+                <div class="bg-white border border-slate-200 rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
+                    <button class="accordion-btn w-full px-6 py-5 flex justify-between items-center bg-white text-left focus:outline-none">
+                        <span class="font-heading font-semibold text-lg text-slate-800 pr-4">
+                            2. Menciona al menos dos beneficios económicos y dos beneficios ambientales al adoptar la Economía Circular.
+                        </span>
+                        <i class="fa-solid fa-chevron-down acc-icon text-teal-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content bg-slate-50/50 border-t border-slate-100 px-6">
+                        <div class="py-5 text-slate-600 grid md:grid-cols-2 gap-6">
+                            <div class="bg-pastel-sky/30 p-5 rounded-xl border border-sky-100">
+                                <h4 class="font-bold text-sky-800 mb-3 flex items-center gap-2"><i class="fa-solid fa-chart-line"></i> Beneficios Económicos (Empresariales)</h4>
+                                <ul class="space-y-2 list-disc list-inside marker:text-sky-500">
+                                    <li><strong>Ahorro en costes de materias primas:</strong> El aprovechamiento de materiales reciclados y subproductos reduce la dependencia de recursos vírgenes y protege ante la volatilidad de precios.</li>
+                                    <li><strong>Nuevas líneas de negocio y competitividad:</strong> Impulsa la innovación (servitización, reparación, mercados de segunda vida) y mejora la imagen corporativa ante clientes e inversores.</li>
+                                </ul>
+                            </div>
+                            <div class="bg-pastel-mint/30 p-5 rounded-xl border border-emerald-100">
+                                <h4 class="font-bold text-teal-800 mb-3 flex items-center gap-2"><i class="fa-solid fa-leaf"></i> Beneficios Ambientales (Ecológicos)</h4>
+                                <ul class="space-y-2 list-disc list-inside marker:text-teal-500">
+                                    <li><strong>Disminución drástica de residuos:</strong> Al reintroducir materiales en el ciclo productivo, se reduce el volumen de desechos enviados a vertederos y la contaminación del suelo y agua.</li>
+                                    <li><strong>Reducción de la huella de carbono y presión ecológica:</strong> Fabricar con materiales recuperados consume menos energía que extraer recursos vírgenes, reduciendo las emisiones de GEI.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pregunta 3 -->
+                <div class="bg-white border border-slate-200 rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
+                    <button class="accordion-btn w-full px-6 py-5 flex justify-between items-center bg-white text-left focus:outline-none">
+                        <span class="font-heading font-semibold text-lg text-slate-800 pr-4">
+                            3. Barreras para la implementación y posibles soluciones.
+                        </span>
+                        <i class="fa-solid fa-chevron-down acc-icon text-teal-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content bg-slate-50/50 border-t border-slate-100 px-6">
+                        <div class="py-5 text-slate-600 space-y-4">
+                            <div class="bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
+                                <strong class="text-orange-800">Barrera identificada (Financiera y Tecnológica):</strong>
+                                <p class="mt-1">El elevado coste de inversión inicial que deben asumir las empresas (especialmente las PYMES) para rediseñar sus productos, adaptar su maquinaria industrial e implementar sistemas de logística inversa, unido a que las materias primas vírgenes siguen siendo a menudo más baratas que las recicladas.</p>
+                            </div>
+                            <div class="bg-teal-50 border-l-4 border-teal-400 p-4 rounded-r-lg mt-4">
+                                <strong class="text-teal-800">Propuesta de solución:</strong>
+                                <p class="mt-1">Establecer incentivos fiscales, subvenciones públicas y líneas de financiación verde para facilitar la modernización tecnológica, acompañados de una fiscalidad ambiental que penalice el uso de recursos vírgenes no renovables y de compras públicas verdes que premien a los proveedores circulares.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pregunta 4 -->
+                <div class="bg-white border border-slate-200 rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
+                    <button class="accordion-btn w-full px-6 py-5 flex justify-between items-center bg-white text-left focus:outline-none">
+                        <span class="font-heading font-semibold text-lg text-slate-800 pr-4">
+                            4. Menciona dos empresas de Zaragoza que actúan bajo criterios de economía circular.
+                        </span>
+                        <i class="fa-solid fa-chevron-down acc-icon text-teal-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content bg-slate-50/50 border-t border-slate-100 px-6">
+                        <div class="py-5 text-slate-600 space-y-6">
+                            <div class="flex gap-4 items-start">
+                                <div class="bg-blue-100 text-blue-600 p-3 rounded-full shrink-0"><i class="fa-solid fa-industry"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-slate-800 text-lg">1. Saica <span class="text-sm font-normal text-slate-500">(Zaragoza y El Burgo de Ebro)</span></h4>
+                                    <p class="mt-1">Multinacional papelera nacida en Zaragoza dedicada a la fabricación de papel reciclado para cartón ondulado y embalajes sostenibles, así como a la gestión y valorización integral de residuos a través de su división Saica Natur.</p>
+                                    <p class="mt-2 text-sm bg-blue-50 p-3 rounded-lg border border-blue-100"><strong class="text-blue-800">Objetivo principal:</strong> Alcanzar el «Residuo Cero a vertedero», transformando el 100 % de los residuos de papel, cartón y plásticos recuperados en nuevas materias primas secundarias y energía.</p>
+                                </div>
+                            </div>
+                            <hr class="border-slate-200">
+                            <div class="flex gap-4 items-start">
+                                <div class="bg-green-100 text-green-600 p-3 rounded-full shrink-0"><i class="fa-solid fa-shopping-bag"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-slate-800 text-lg">2. Sphere España <span class="text-sm font-normal text-slate-500">(Pedrola, provincia de Zaragoza)</span></h4>
+                                    <p class="mt-1">Empresa referente ubicada en el Polígono Industrial El Pradillo (Pedrola) dedicada a la fabricación de bolsas compostables, films biodegradables y productos plásticos con alto porcentaje de material reciclado posconsumo.</p>
+                                    <p class="mt-2 text-sm bg-green-50 p-3 rounded-lg border border-green-100"><strong class="text-green-800">Objetivo principal:</strong> Sustituir el plástico convencional de origen fósil por biopolímeros de origen vegetal (fécula de patata y maíz) y polietileno regenerado, cerrando el ciclo tanto biológico como técnico del envase.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ACTIVIDAD 2: ESQUEMA GRÁFICO Y TABLA -->
+        <section class="fade-in-up element-to-animate">
+            <div class="flex items-center gap-4 mb-10">
+                <div class="bg-pastel-yellow p-4 rounded-2xl text-yellow-700 shadow-sm">
+                    <i class="fa-solid fa-project-diagram text-2xl"></i>
+                </div>
+                <h2 class="font-heading text-3xl font-bold text-slate-800">Actividad 2: Esquema Gráfico Comparativo</h2>
+            </div>
+
+            <!-- Infografía -->
+            <div class="bg-white p-6 md:p-10 rounded-3xl shadow-lg border border-slate-100 mb-12">
+                <h3 class="text-center font-heading text-2xl font-bold text-slate-700 mb-10">Comparativa Visual de Flujos</h3>
+                
+                <!-- SECCIÓN 1: Economía Lineal -->
+                <div class="mb-12">
+                    <div class="flex items-center gap-3 mb-6 border-b border-rose-200 pb-3">
+                        <span class="bg-rose-100 text-rose-600 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">Sección 1</span>
+                        <h4 class="text-xl font-bold text-rose-800">Economía Lineal (EL): <span class="font-normal text-rose-600">Flujo Unidireccional Abierto</span></h4>
+                    </div>
+                    
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                        <!-- Pasos Lineales -->
+                        <div class="flex-1 bg-pastel-rose/40 border border-rose-200 rounded-xl p-4 text-center w-full shadow-sm hover:shadow-md transition-all">
+                            <div class="text-rose-500 text-3xl mb-2"><i class="fa-solid fa-pickaxe"></i></div>
+                            <div class="font-bold text-rose-900">1. EXTRACCIÓN</div>
+                            <div class="text-xs text-rose-700 mt-1">Recursos vírgenes</div>
+                        </div>
+                        <i class="fa-solid fa-arrow-right text-rose-300 text-xl hidden md:block"></i>
+                        <i class="fa-solid fa-arrow-down text-rose-300 text-xl md:hidden"></i>
+                        
+                        <div class="flex-1 bg-pastel-rose/40 border border-rose-200 rounded-xl p-4 text-center w-full shadow-sm hover:shadow-md transition-all">
+                            <div class="text-rose-500 text-3xl mb-2"><i class="fa-solid fa-industry"></i></div>
+                            <div class="font-bold text-rose-900">2. PRODUCCIÓN</div>
+                            <div class="text-xs text-rose-700 mt-1">Alto gasto energético</div>
+                        </div>
+                        <i class="fa-solid fa-arrow-right text-rose-300 text-xl hidden md:block"></i>
+                        <i class="fa-solid fa-arrow-down text-rose-300 text-xl md:hidden"></i>
+                        
+                        <div class="flex-1 bg-pastel-rose/40 border border-rose-200 rounded-xl p-4 text-center w-full shadow-sm hover:shadow-md transition-all">
+                            <div class="text-rose-500 text-3xl mb-2"><i class="fa-solid fa-truck-fast"></i></div>
+                            <div class="font-bold text-rose-900">3. DISTRIBUCIÓN</div>
+                            <div class="text-xs text-rose-700 mt-1">Venta masiva</div>
+                        </div>
+                        <i class="fa-solid fa-arrow-right text-rose-300 text-xl hidden md:block"></i>
+                        <i class="fa-solid fa-arrow-down text-rose-300 text-xl md:hidden"></i>
+
+                        <div class="flex-1 bg-pastel-rose/40 border border-rose-200 rounded-xl p-4 text-center w-full shadow-sm hover:shadow-md transition-all">
+                            <div class="text-rose-500 text-3xl mb-2"><i class="fa-solid fa-cart-shopping"></i></div>
+                            <div class="font-bold text-rose-900">4. CONSUMO</div>
+                            <div class="text-xs text-rose-700 mt-1">Obsolescencia rápida</div>
+                        </div>
+                        <i class="fa-solid fa-arrow-right text-rose-300 text-xl hidden md:block"></i>
+                        <i class="fa-solid fa-arrow-down text-rose-300 text-xl md:hidden"></i>
+
+                        <div class="flex-1 bg-slate-200 border border-slate-300 rounded-xl p-4 text-center w-full shadow-sm hover:bg-slate-300 transition-all">
+                            <div class="text-slate-600 text-3xl mb-2"><i class="fa-solid fa-dumpster"></i></div>
+                            <div class="font-bold text-slate-800">5. DESECHO FINAL</div>
+                            <div class="text-xs text-slate-600 mt-1">Vertedero / Incineración</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 2: Economía Circular -->
+                <div class="relative">
+                    <div class="flex items-center gap-3 mb-6 border-b border-teal-200 pb-3">
+                        <span class="bg-teal-100 text-teal-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">Sección 2</span>
+                        <h4 class="text-xl font-bold text-teal-800">Economía Circular (EC): <span class="font-normal text-teal-600">Ciclo Cerrado Regenerativo (Las 7R)</span></h4>
+                    </div>
+                    
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-4 relative z-10">
+                        <!-- Pasos Circulares -->
+                        <div class="flex-1 bg-pastel-green/40 border border-green-300 rounded-xl p-4 text-center w-full shadow-sm hover:shadow-md hover:-translate-y-1 transition-all">
+                            <div class="text-teal-600 text-3xl mb-2"><i class="fa-solid fa-compass-drafting"></i></div>
+                            <div class="font-bold text-teal-900">1. ECODISEÑO</div>
+                            <div class="text-xs text-teal-700 mt-1">Diseño modular y limpio</div>
+                        </div>
+                        <i class="fa-solid fa-arrow-right text-teal-300 text-xl hidden md:block"></i>
+                        <i class="fa-solid fa-arrow-down text-teal-300 text-xl md:hidden"></i>
+                        
+                        <div class="flex-1 bg-pastel-green/40 border border-green-300 rounded-xl p-4 text-center w-full shadow-sm hover:shadow-md hover:-translate-y-1 transition-all">
+                            <div class="text-teal-600 text-3xl mb-2"><i class="fa-solid fa-gears"></i></div>
+                            <div class="font-bold text-teal-900">2. REMANUFACTURA</div>
+                            <div class="text-xs text-teal-700 mt-1">Energía renovable</div>
+                        </div>
+                        <i class="fa-solid fa-arrow-right text-teal-300 text-xl hidden md:block"></i>
+                        <i class="fa-solid fa-arrow-down text-teal-300 text-xl md:hidden"></i>
+                        
+                        <div class="flex-1 bg-pastel-green/40 border border-green-300 rounded-xl p-4 text-center w-full shadow-sm hover:shadow-md hover:-translate-y-1 transition-all">
+                            <div class="text-teal-600 text-3xl mb-2"><i class="fa-solid fa-handshake"></i></div>
+                            <div class="font-bold text-teal-900">3. USO Y ALQUILER</div>
+                            <div class="text-xs text-teal-700 mt-1">Consumo responsable</div>
+                        </div>
+                        <i class="fa-solid fa-arrow-right text-teal-300 text-xl hidden md:block"></i>
+                        <i class="fa-solid fa-arrow-down text-teal-300 text-xl md:hidden"></i>
+
+                        <div class="flex-1 bg-pastel-green/40 border border-green-300 rounded-xl p-4 text-center w-full shadow-sm hover:shadow-md hover:-translate-y-1 transition-all">
+                            <div class="text-teal-600 text-3xl mb-2"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+                            <div class="font-bold text-teal-900">4. REPARAR/REUSAR</div>
+                            <div class="text-xs text-teal-700 mt-1">Alargar la vida útil</div>
+                        </div>
+                        <i class="fa-solid fa-arrow-right text-teal-300 text-xl hidden md:block"></i>
+                        <i class="fa-solid fa-arrow-down text-teal-300 text-xl md:hidden"></i>
+
+                        <div class="flex-1 bg-teal-100 border border-teal-400 rounded-xl p-4 text-center w-full shadow-md transform md:scale-110 hover:bg-teal-200 transition-all ring-4 ring-teal-50">
+                            <div class="text-teal-700 text-3xl mb-2 spin-slow"><i class="fa-solid fa-recycle"></i></div>
+                            <div class="font-bold text-teal-900">5. RECICLAJE Y RETORNO</div>
+                            <div class="text-xs text-teal-800 mt-1">Nuevas materias primas</div>
+                        </div>
+                    </div>
+
+                    <!-- Representación visual del retorno (visible en desktop) -->
+                    <div class="hidden md:block mt-8 bg-gradient-to-r from-teal-50 to-green-50 p-4 rounded-xl border border-teal-100 text-center relative">
+                        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 text-teal-400 text-2xl bg-white rounded-full px-2">
+                            <i class="fa-solid fa-rotate-left"></i>
+                        </div>
+                        <p class="text-sm font-semibold text-teal-800 mt-2">
+                            <i class="fa-solid fa-circle-info mr-2"></i> FLUJO DE CICLO CERRADO: El residuo vuelve a ser recurso (Residuo Cero)
+                        </p>
+                        <p class="text-xs text-teal-600 mt-1 max-w-2xl mx-auto">
+                            <strong>DIFERENCIA CLAVE:</strong> En la Economía Lineal la flecha termina en el vertedero; en la Economía Circular, la flecha de retorno reintroduce los materiales reciclados y reparados en las fases de Ecodiseño y Producción.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabla Comparativa -->
+            <div class="bg-white rounded-3xl shadow-lg border border-slate-100 overflow-hidden">
+                <div class="bg-slate-800 p-6 text-white">
+                    <h3 class="font-heading text-xl font-bold flex items-center gap-3">
+                        <i class="fa-solid fa-table-list text-teal-400"></i> Síntesis Comparativa de Etapas y Criterios
+                    </h3>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50 text-slate-600 border-b-2 border-slate-200">
+                                <th class="p-4 font-bold w-1/5">Dimensión / Etapa</th>
+                                <th class="p-4 font-bold text-rose-700 w-2/5 border-l border-slate-200">Modelo de Economía Lineal (EL)</th>
+                                <th class="p-4 font-bold text-teal-700 w-2/5 border-l border-slate-200">Modelo de Economía Circular (EC)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm md:text-base">
+                            <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+                                <td class="p-4 font-semibold text-slate-700"><span class="bg-slate-100 px-2 py-1 rounded text-xs mr-2">1</span> Diseño e Inicio</td>
+                                <td class="p-4 text-slate-600 border-l border-slate-100">Diseño enfocado en abaratar el coste de fabricación inicial sin prever el desmontaje ni el reciclaje.</td>
+                                <td class="p-4 text-slate-600 border-l border-slate-100 bg-teal-50/30"><strong>Ecodiseño:</strong> Productos concebidos desde su origen para ser duraderos, modulares, reparables y reciclables.</td>
+                            </tr>
+                            <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+                                <td class="p-4 font-semibold text-slate-700"><span class="bg-slate-100 px-2 py-1 rounded text-xs mr-2">2</span> Origen de Recursos</td>
+                                <td class="p-4 text-slate-600 border-l border-slate-100">Extracción intensiva de materias primas vírgenes y uso mayoritario de combustibles fósiles.</td>
+                                <td class="p-4 text-slate-600 border-l border-slate-100 bg-teal-50/30">Prioridad a materias primas secundarias (recuperadas), materiales biodegradables y energías renovables.</td>
+                            </tr>
+                            <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+                                <td class="p-4 font-semibold text-slate-700"><span class="bg-slate-100 px-2 py-1 rounded text-xs mr-2">3</span> Fase de Consumo</td>
+                                <td class="p-4 text-slate-600 border-l border-slate-100">Basada en la posesión individual, el usar y tirar y la obsolescencia programada o percibida.</td>
+                                <td class="p-4 text-slate-600 border-l border-slate-100 bg-teal-50/30">Basada en el uso compartido, la servitización (alquiler/leasing) y el consumo responsable.</td>
+                            </tr>
+                            <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+                                <td class="p-4 font-semibold text-slate-700"><span class="bg-slate-100 px-2 py-1 rounded text-xs mr-2">4</span> Gestión Posconsumo</td>
+                                <td class="p-4 text-slate-600 border-l border-slate-100">Recogida mixta y eliminación final en vertederos o plantas de incineración sin recuperación material.</td>
+                                <td class="p-4 text-slate-600 border-l border-slate-100 bg-teal-50/30">Logística inversa, reparación, reacondicionamiento y reciclaje para reincorporar el material al ciclo.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="p-4 font-semibold text-slate-700"><span class="bg-slate-100 px-2 py-1 rounded text-xs mr-2">5</span> Impacto Económico y Ambiental</td>
+                                <td class="p-4 text-slate-600 border-l border-slate-100">Degradación de ecosistemas, agotamiento de recursos y pérdida del valor económico de los materiales.</td>
+                                <td class="p-4 text-slate-600 border-l border-slate-100 bg-teal-50/30">Regeneración del capital natural, reducción de emisiones de GEI y retención del valor en la economía.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center border-t-4 border-teal-500">
+        <div class="max-w-4xl mx-auto px-6 flex flex-col items-center">
+            <i class="fa-solid fa-leaf text-teal-500 text-2xl mb-3"></i>
+            <p class="font-medium text-slate-300">Trabajo: Sostenibilidad Aplicada al Sistema Productivo</p>
+            <p class="text-sm mt-1">Realizado por Da Cunha Goncalves_Ana Maria</p>
+            <p class="text-xs mt-4 opacity-60">Diseño web interactivo generado para fines educativos y demostrativos.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts de Interacción -->
+    <script>
+        // Lógica del Acordeón
+        document.addEventListener('DOMContentLoaded', () => {
+            const accordionBtns = document.querySelectorAll('.accordion-btn');
+
+            accordionBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const content = this.nextElementSibling;
+                    
+                    // Alternar la clase 'open' para controlar max-height en CSS
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                        content.style.paddingTop = "0px";
+                        content.style.paddingBottom = "0px";
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        // Mantener los paddings si es necesario o dejar que tailwind/css lo maneje
+                    }
+                    
+                    // Cierra los otros paneles abiertos (Opcional, estilo acordeón estricto)
+                    /*
+                    accordionBtns.forEach(otherBtn => {
+                        if (otherBtn !== this && otherBtn.classList.contains('active')) {
+                            otherBtn.classList.remove('active');
+                            otherBtn.nextElementSibling.style.maxHeight = null;
+                        }
+                    });
+                    */
+                });
+            });
+
+            // Para que el primer elemento inicie abierto (opcional)
+            if(accordionBtns.length > 0) {
+                accordionBtns[0].click();
+            }
+
+            // Animaciones al hacer scroll (Intersection Observer)
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Animar solo una vez
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.element-to-animate').forEach((el) => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
