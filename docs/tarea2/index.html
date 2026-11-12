@@ -1,1 +1,577 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retos Medioambientales y ODS - Interactivo</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        nature: {
+                            50: '#f2fbf5',
+                            100: '#e1f6e8',
+                            200: '#c4ebd4',
+                            300: '#96d9b4',
+                            400: '#5fbf8f',
+                            500: '#39a474',
+                            600: '#28835b',
+                            700: '#22694a',
+                            800: '#1e543d',
+                            900: '#194533',
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Base styles */
+        body {
+            background: linear-gradient(135deg, #e1f6e8 0%, #f8fafc 50%, #c4ebd4 100%);
+            background-attachment: fixed;
+            color: #194533;
+        }
+
+        /* Glassmorphism Utilities */
+        .glass {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 8px 32px 0 rgba(40, 131, 91, 0.15);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 16px 0 rgba(40, 131, 91, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px 0 rgba(40, 131, 91, 0.2);
+            background: rgba(255, 255, 255, 0.95);
+            border-color: #5fbf8f;
+        }
+
+        /* Modal Overlay Transition */
+        #modal-overlay {
+            transition: opacity 0.3s ease;
+        }
+        #modal-content {
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+            transform: scale(0.95) translateY(20px);
+            opacity: 0;
+        }
+        #modal-overlay.active #modal-content {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+
+        /* Accordion Animations */
+        .accordion-content {
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out, opacity 0.3s ease-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        .accordion-item.active .accordion-content {
+            opacity: 1;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .accordion-item.active .fa-chevron-down {
+            transform: rotate(180deg);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e1f6e8;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #5fbf8f;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #39a474;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans selection:bg-nature-400 selection:text-white">
+
+    <!-- HEADER / HERO -->
+    <header class="w-full pt-12 pb-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center glass rounded-3xl p-8 lg:p-12 relative overflow-hidden">
+            
+            <!-- Decoraciones de fondo -->
+            <div class="absolute -top-24 -right-24 w-64 h-64 bg-nature-300 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-pulse"></div>
+            <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-50"></div>
+
+            <div class="lg:col-span-12 space-y-6 relative z-10 flex flex-col items-center text-center">
+                <div class="inline-flex items-center px-4 py-2 bg-white/70 text-nature-800 rounded-full text-sm font-bold tracking-widest border border-white shadow-sm backdrop-blur-sm uppercase">
+                    <i class="fa-solid fa-leaf mr-2 text-nature-600"></i> Proyecto de Sostenibilidad
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-nature-900 to-emerald-600 leading-tight">
+                    Retos Medioambientales <br> y ODS
+                </h1>
+                <p class="text-lg md:text-xl text-nature-800 font-medium max-w-2xl mx-auto">
+                    Una exploración interactiva de los desafíos globales y acciones sostenibles aplicadas al sector de la Educación Infantil.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 space-y-20">
+        
+        <!-- SECTION 1: Retos Medioambientales (Interactive Grid) -->
+        <section class="space-y-8">
+            <div class="text-center max-w-3xl mx-auto space-y-4">
+                <span class="text-nature-600 font-bold tracking-widest uppercase text-sm">Actividad 1</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-nature-900">
+                    Retos Medioambientales
+                </h2>
+                <p class="text-nature-700 text-lg">
+                    En un mundo con más de 8.000 millones de habitantes, analizamos los desafíos críticos para un planeta sostenible. <br> <strong class="text-nature-900">Haz clic en cada tarjeta</strong> para descubrir sus conceptos, objetivos y actualidad.
+                </p>
+            </div>
+
+            <!-- Grid de Tarjetas -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="challenges-grid">
+                <!-- Las tarjetas se generan dinámicamente con JS -->
+            </div>
+        </section>
+
+        <!-- SECTION 2: ODS 11 (Image + Accordion) -->
+        <section class="glass rounded-3xl p-6 lg:p-12 relative overflow-hidden">
+            <div class="text-center md:text-left mb-10 border-b border-nature-200/50 pb-6">
+                <span class="text-nature-600 font-bold tracking-widest uppercase text-sm">Actividad 2</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-nature-900 mt-2">
+                    Objetivos de Desarrollo Sostenible
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+                
+                <!-- Columna Izquierda: Imagen -->
+                <div class="lg:col-span-5 flex justify-center items-center">
+                    <div class="glass-card p-4 rounded-3xl w-full flex items-center justify-center transform transition duration-500 hover:scale-105">
+                        <img src="https://github.com/TSEIavempace/sasp/blob/342ebb1bb06482707c7c5e74dc4266856b19024a/docs/tarea2/Captura%20de%20pantalla%202026-11-12%20111851.png?raw=true" 
+                             alt="ODS 11: Ciudades y Comunidades Sostenibles" 
+                             class="w-full max-w-sm rounded-2xl object-contain shadow-sm">
+                    </div>
+                </div>
+
+                <!-- Columna Derecha: Acordeón Interactivo -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div>
+                        <h3 class="text-2xl font-bold text-nature-900">ODS 11: Ciudades y Comunidades Sostenibles</h3>
+                        <p class="text-nature-700 mt-2">
+                            Descubre <strong>5 acciones clave</strong> propuestas para implementar este ODS desde el sector profesional de la <strong>Educación Infantil</strong>:
+                        </p>
+                    </div>
+
+                    <div class="space-y-4" id="ods-accordion">
+                        <!-- Acordeón Item 1 -->
+                        <div class="accordion-item glass-card rounded-2xl overflow-hidden">
+                            <button class="accordion-header w-full flex justify-between items-center p-5 text-left bg-white/40 hover:bg-white/60 transition-colors">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-8 h-8 rounded-full bg-nature-600 text-white flex items-center justify-center font-bold text-sm shrink-0">1</div>
+                                    <span class="font-bold text-nature-900 text-lg">Caminos Escolares Seguros</span>
+                                </div>
+                                <i class="fa-solid fa-chevron-down text-nature-500 transition-transform duration-300"></i>
+                            </button>
+                            <div class="accordion-content px-5">
+                                <p class="text-nature-800 leading-relaxed pb-2">
+                                    Promover proyectos con el ayuntamiento y las familias para que el trayecto desde los barrios a la escuela infantil sea peatonal, seguro y libre de emisiones, fomentando el transporte activo (andando, en patinete o bicicleta) desde los primeros años de vida.
+                                </p>
+                                <p class="text-nature-700 text-sm italic pb-4">
+                                    <strong class="text-nature-900 not-italic">Dato verificado:</strong> Programas respaldados por entidades como UNICEF demuestran que pacificar los entornos escolares reduce drásticamente la siniestralidad y mejora la salud respiratoria infantil.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Acordeón Item 2 -->
+                        <div class="accordion-item glass-card rounded-2xl overflow-hidden">
+                            <button class="accordion-header w-full flex justify-between items-center p-5 text-left bg-white/40 hover:bg-white/60 transition-colors">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-8 h-8 rounded-full bg-nature-600 text-white flex items-center justify-center font-bold text-sm shrink-0">2</div>
+                                    <span class="font-bold text-nature-900 text-lg">Huertos Escolares Ecológicos</span>
+                                </div>
+                                <i class="fa-solid fa-chevron-down text-nature-500 transition-transform duration-300"></i>
+                            </button>
+                            <div class="accordion-content px-5">
+                                <p class="text-nature-800 leading-relaxed pb-2">
+                                    Instalar pequeños espacios de cultivo en el centro educativo donde los niños y niñas puedan plantar especies aromáticas locales y hortalizas, reconectando la escuela con el entorno natural del municipio y enseñando el cuidado de la tierra desde la primera infancia.
+                                </p>
+                                <p class="text-nature-700 text-sm italic pb-4">
+                                    <strong class="text-nature-900 not-italic">Dato verificado:</strong> La FAO reconoce los huertos escolares como una plataforma de aprendizaje que puede incrementar significativamente el consumo voluntario de frutas y verduras en los menores.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Acordeón Item 3 -->
+                        <div class="accordion-item glass-card rounded-2xl overflow-hidden">
+                            <button class="accordion-header w-full flex justify-between items-center p-5 text-left bg-white/40 hover:bg-white/60 transition-colors">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-8 h-8 rounded-full bg-nature-600 text-white flex items-center justify-center font-bold text-sm shrink-0">3</div>
+                                    <span class="font-bold text-nature-900 text-lg">Integración con Asociaciones Vecinales</span>
+                                </div>
+                                <i class="fa-solid fa-chevron-down text-nature-500 transition-transform duration-300"></i>
+                            </button>
+                            <div class="accordion-content px-5">
+                                <p class="text-nature-800 leading-relaxed pb-2">
+                                    Organizar actividades trimestrales donde el alumnado de la escuela infantil colabore con las asociaciones de vecinos locales en proyectos comunitarios, como la decoración de calles con materiales reciclados para festividades, creando un sentido de pertenencia y comunidad sostenible.
+                                </p>
+                                <p class="text-nature-700 text-sm italic pb-4">
+                                    <strong class="text-nature-900 not-italic">Dato verificado:</strong> La metodología de Aprendizaje-Servicio (ApS) evidencia que la participación comunitaria temprana mejora sustancialmente el desarrollo socioemocional y cívico en la primera infancia.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Acordeón Item 4 -->
+                        <div class="accordion-item glass-card rounded-2xl overflow-hidden">
+                            <button class="accordion-header w-full flex justify-between items-center p-5 text-left bg-white/40 hover:bg-white/60 transition-colors">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-8 h-8 rounded-full bg-nature-600 text-white flex items-center justify-center font-bold text-sm shrink-0">4</div>
+                                    <span class="font-bold text-nature-900 text-lg">Naturalización de los Patios Escolares</span>
+                                </div>
+                                <i class="fa-solid fa-chevron-down text-nature-500 transition-transform duration-300"></i>
+                            </button>
+                            <div class="accordion-content px-5">
+                                <p class="text-nature-800 leading-relaxed pb-2">
+                                    Sustituir progresivamente las zonas de asfalto u hormigón de la escuela infantil por áreas verdes, arbolado y elementos de juego basados en la naturaleza, mejorando la calidad del aire del centro y creando microclimas que mitiguen el calor extremo.
+                                </p>
+                                <p class="text-nature-700 text-sm italic pb-4">
+                                    <strong class="text-nature-900 not-italic">Dato verificado:</strong> Investigaciones de institutos de salud global (como ISGlobal) asocian la exposición a espacios verdes en escuelas con mejoras en el desarrollo cognitivo y la memoria de trabajo de los alumnos.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Acordeón Item 5 -->
+                        <div class="accordion-item glass-card rounded-2xl overflow-hidden">
+                            <button class="accordion-header w-full flex justify-between items-center p-5 text-left bg-white/40 hover:bg-white/60 transition-colors">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-8 h-8 rounded-full bg-nature-600 text-white flex items-center justify-center font-bold text-sm shrink-0">5</div>
+                                    <span class="font-bold text-nature-900 text-lg">Gestión Circular en el Aula</span>
+                                </div>
+                                <i class="fa-solid fa-chevron-down text-nature-500 transition-transform duration-300"></i>
+                            </button>
+                            <div class="accordion-content px-5">
+                                <p class="text-nature-800 leading-relaxed pb-2">
+                                    Implementar rincones de aprendizaje donde los recursos del aula (juguetes, cuentos, material de manualidades) se basen en la recuperación y el reciclaje de elementos cotidianos de la propia comunidad, enseñando a las familias y a los menores a reducir la generación de residuos urbanos.
+                                </p>
+                                <p class="text-nature-700 text-sm italic pb-4">
+                                    <strong class="text-nature-900 not-italic">Dato verificado:</strong> La implementación de prácticas de economía circular desde la etapa 0-6 años facilita la consolidación de competencias ecológicas transversales estipuladas en marcos educativos como la LOMLOE.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER ACADÉMICO -->
+    <footer class="mt-auto border-t border-nature-200/50 glass py-10 text-center text-xs text-nature-700">
+        <div class="max-w-7xl mx-auto px-4 space-y-3">
+            <p class="font-bold text-lg text-nature-900">IES Avempace · Zaragoza</p>
+            <p class="font-medium text-nature-800">Módulo Profesional de Sostenibilidad aplicada al sistema productivo</p>
+            <div class="h-px w-24 bg-nature-300 mx-auto my-4"></div>
+            <p class="text-sm">Caso Práctico elaborado por <span class="text-coral-600 font-bold">Ana Maria da Cunha Goncalves</span> bajo la tutoría de <span class="text-violet-600 font-bold">Olga Ezquerra Aranda</span>.</p>
+            <p class="text-[11px] text-nature-500 pt-4">
+                © <span id="footer-year">2026</span> Todos los derechos reservados. Diseñado para una experiencia web interactiva e inmersiva.
+            </p>
+        </div>
+    </footer>
+
+    <!-- MODAL PARA RETOS MEDIOAMBIENTALES -->
+    <div id="modal-overlay" class="fixed inset-0 bg-nature-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none">
+        <div id="modal-content" class="bg-white rounded-3xl w-full max-w-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+            
+            <!-- Modal Header -->
+            <div class="px-6 py-5 border-b border-gray-100 flex justify-between items-center bg-nature-50/50 relative overflow-hidden">
+                <div class="absolute -right-10 -top-10 text-9xl text-nature-100 opacity-50 z-0">
+                    <i id="modal-bg-icon" class="fa-solid fa-leaf"></i>
+                </div>
+                <div class="flex items-center space-x-4 relative z-10">
+                    <div id="modal-icon-container" class="w-12 h-12 rounded-xl flex items-center justify-center text-xl shadow-inner">
+                        <i id="modal-icon" class="fa-solid fa-leaf"></i>
+                    </div>
+                    <h3 id="modal-title" class="text-2xl font-bold text-nature-900">Título</h3>
+                </div>
+                <button id="close-modal" class="relative z-10 w-10 h-10 rounded-full bg-white text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors shadow-sm flex items-center justify-center">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-6 sm:p-8 space-y-6 overflow-y-auto relative z-10">
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-nature-500 mb-2">Concepto</h4>
+                    <p id="modal-concept" class="text-gray-700 leading-relaxed text-[15px]"></p>
+                </div>
+                
+                <div class="bg-nature-50 p-5 rounded-2xl border border-nature-100">
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-nature-600 mb-2 flex items-center">
+                        <i class="fa-solid fa-bullseye mr-2"></i> Objetivos
+                    </h4>
+                    <p id="modal-objectives" class="text-nature-900 font-medium text-[15px] leading-relaxed"></p>
+                </div>
+
+                <div class="bg-blue-50/50 p-5 rounded-2xl border border-blue-100">
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-blue-700 mb-2 flex items-center">
+                        <i class="fa-solid fa-check-circle mr-2"></i> Dato Verificado
+                    </h4>
+                    <p id="modal-verified" class="text-blue-900 font-medium text-[14px] leading-relaxed italic"></p>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-6 bg-gray-50 border-t border-gray-100 flex justify-end">
+                <a id="modal-link" href="#" target="_blank" class="inline-flex items-center justify-center px-6 py-3 bg-nature-600 hover:bg-nature-700 text-white font-medium rounded-xl transition-colors shadow-md hover:shadow-lg group">
+                    <span id="modal-link-text">Leer Noticia</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-sm transition-transform group-hover:-translate-y-1 group-hover:translate-x-1"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGICA JAVASCRIPT -->
+    <script>
+        // Datos de la Actividad 1 (Retos Medioambientales)
+        const challengesData = [
+            {
+                title: "Cambio Climático",
+                icon: "fa-temperature-arrow-up",
+                colorClass: "text-red-500",
+                bgClass: "bg-red-100",
+                gradient: "from-red-50 to-red-100/50",
+                concept: "Alteración a largo plazo de las temperaturas y los patrones climáticos globales, impulsada fundamentalmente por las emisiones de gases de efecto invernadero derivadas de la actividad humana.",
+                objectives: "Alcanzar la neutralidad de carbono, limitar el calentamiento global a 1,5 °C y reducir las emisiones de gases de efecto invernadero mediante la descarbonización.",
+                verified: "Dato verificado: Según el Grupo Intergubernamental de Expertos sobre el Cambio Climático (IPCC), la temperatura global ha aumentado aproximadamente 1,1 °C desde la era preindustrial.",
+                link: "https://news.un.org/es/story/2023/11/1525827",
+                linkText: "Informe PNUMA (La ONU)"
+            },
+            {
+                title: "Contaminación",
+                icon: "fa-smog",
+                colorClass: "text-stone-600",
+                bgClass: "bg-stone-100",
+                gradient: "from-stone-50 to-stone-100/50",
+                concept: "Introducción de sustancias, elementos o energía (plásticos, gases tóxicos, metales pesados) en el medio ambiente que altera su equilibrio y afecta a la salud humana y de los ecosistemas.",
+                objectives: "Mejorar la calidad del aire urbano, erradicar los vertidos de sustancias químicas nocivas, reducir el uso de plásticos de un solo uso y fomentar la depuración de aguas.",
+                verified: "Dato verificado: La Organización Mundial de la Salud (OMS) estima que el 99 % de la población mundial respira aire que supera los límites de calidad recomendados.",
+                link: "https://www.miteco.gob.es/",
+                linkText: "Ampliación de ZBE en España"
+            },
+            {
+                title: "Gestión de Residuos",
+                icon: "fa-recycle",
+                colorClass: "text-amber-500",
+                bgClass: "bg-amber-100",
+                gradient: "from-amber-50 to-amber-100/50",
+                concept: "Conjunto de procesos y operaciones dirigidas a recoger, transportar, tratar y reciclar los desechos generados, minimizando su impacto ambiental y promoviendo la reincorporación de los materiales al ciclo productivo.",
+                objectives: "Promover el modelo de economía circular, aumentar las tasas de reciclaje y reutilización, y minimizar el volumen de residuos que terminan en vertederos.",
+                verified: "Dato verificado: El Banco Mundial señala que se generan anualmente unos 2.010 millones de toneladas de desechos sólidos municipales a nivel global.",
+                link: "https://ec.europa.eu/commission/presscorner/",
+                linkText: "Nuevas normativas europeas"
+            },
+            {
+                title: "Transición Energética",
+                icon: "fa-solar-panel",
+                colorClass: "text-yellow-500",
+                bgClass: "bg-yellow-100",
+                gradient: "from-yellow-50 to-yellow-100/50",
+                concept: "Cambio estructural del modelo de producción, distribución y consumo de energía, pasando de sistemas basados en combustibles fósiles hacia fuentes renovables y sostenibles.",
+                objectives: "Aumentar la cuota de energías renovables (solar, eólica), mejorar la eficiencia energética en edificios e industrias, y promover la electrificación del transporte.",
+                verified: "Dato verificado: La Agencia Internacional de la Energía (AIE) prevé que las fuentes renovables representarán más del 90 % de la expansión de la capacidad eléctrica mundial en los próximos años.",
+                link: "https://www.ree.es/",
+                linkText: "Récord de renovables en España"
+            },
+            {
+                title: "Modelo Alimentario",
+                icon: "fa-seedling",
+                colorClass: "text-lime-600",
+                bgClass: "bg-lime-100",
+                gradient: "from-lime-50 to-lime-100/50",
+                concept: "Sistema que abarca desde la producción agrícola y ganadera hasta el consumo final, el cual actualmente genera altas emisiones, deforestación y pérdida de suelo fértil, requiriendo prácticas sostenibles.",
+                objectives: "Fomentar la agricultura ecológica y de proximidad, reducir el desperdicio alimentario a lo largo de la cadena de suministro y promover dietas con menor impacto en carbono.",
+                verified: "Dato verificado: La Organización de las Naciones Unidas para la Alimentación y la Agricultura (FAO) estima que un tercio de todos los alimentos producidos en el mundo se pierde o se desperdicia.",
+                link: "https://www.mapa.gob.es/",
+                linkText: "Ley de Prevención de Pérdidas"
+            },
+            {
+                title: "Preservar la Biodiversidad",
+                icon: "fa-frog",
+                colorClass: "text-emerald-500",
+                bgClass: "bg-emerald-100",
+                gradient: "from-emerald-50 to-emerald-100/50",
+                concept: "Protección y conservación de la amplia variedad de especies vegetales, animales y microorganismos, así como de los ecosistemas (bosques, océanos) que sustentan la vida en la Tierra.",
+                objectives: "Frenar la tasa de extinción de especies, restaurar los ecosistemas terrestres y marinos degradados, y ampliar las zonas naturales protegidas a nivel global.",
+                verified: "Dato verificado: La Plataforma Intergubernamental Científico-Normativa sobre Diversidad Biológica y Servicios de los Ecosistemas (IPBES) advierte que un millón de especies de animales y plantas están en peligro de extinción.",
+                link: "https://news.un.org/es/",
+                linkText: "Acuerdo sobre Biodiversidad (COP15)"
+            },
+            {
+                title: "Estrés Hídrico",
+                icon: "fa-droplet-slash",
+                colorClass: "text-cyan-500",
+                bgClass: "bg-cyan-100",
+                gradient: "from-cyan-50 to-cyan-100/50",
+                concept: "Situación de déficit que se produce cuando la demanda de agua dulce por parte de la población, la agricultura y la industria supera a la cantidad disponible o cuando su mala calidad restringe su uso.",
+                objectives: "Optimizar y modernizar las infraestructuras de riego, implementar sistemas de reutilización y depuración de aguas residuales, y garantizar el acceso equitativo al agua.",
+                verified: "Dato verificado: Datos de ONU-Agua indican que más de 2.000 millones de personas viven en países que sufren un alto estrés hídrico.",
+                link: "https://www.miteco.gob.es/",
+                linkText: "Restricciones por sequía extrema"
+            },
+            {
+                title: "Meteorología Extrema",
+                icon: "fa-cloud-bolt",
+                colorClass: "text-purple-500",
+                bgClass: "bg-purple-100",
+                gradient: "from-purple-50 to-purple-100/50",
+                concept: "Incremento en la frecuencia e intensidad de fenómenos atmosféricos destructivos (olas de calor extremo, sequías prolongadas, lluvias torrenciales o huracanes) como consecuencia directa del calentamiento global.",
+                objectives: "Mejorar los sistemas de alerta temprana, adaptar las infraestructuras críticas para resistir desastres naturales y proteger a las poblaciones y comunidades más vulnerables.",
+                verified: "Dato verificado: La Organización Meteorológica Mundial (OMM) documenta que el número de desastres relacionados con el clima se ha quintuplicado en los últimos 50 años.",
+                link: "https://www.aemet.es/",
+                linkText: "Avisos de lluvias torrenciales (DANA)"
+            }
+        ];
+
+        // 1. Generar Tarjetas Dinámicamente
+        const grid = document.getElementById('challenges-grid');
+        
+        challengesData.forEach((challenge, index) => {
+            const card = document.createElement('button');
+            card.className = `glass-card group text-left rounded-2xl p-6 relative overflow-hidden h-full flex flex-col justify-between cursor-pointer focus:outline-none focus:ring-2 focus:ring-nature-400`;
+            card.setAttribute('data-index', index);
+            
+            card.innerHTML = `
+                <div class="absolute -right-8 -top-8 w-24 h-24 rounded-full bg-gradient-to-br ${challenge.gradient} opacity-50 group-hover:scale-150 transition-transform duration-500 ease-out z-0"></div>
+                
+                <div class="relative z-10 flex flex-col h-full space-y-4">
+                    <div class="w-14 h-14 rounded-xl ${challenge.bgClass} flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform duration-300">
+                        <i class="fa-solid ${challenge.icon} ${challenge.colorClass} text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-nature-900 text-lg leading-tight group-hover:text-nature-600 transition-colors">${challenge.title}</h3>
+                        <p class="text-nature-500 text-xs mt-2 font-medium flex items-center group-hover:text-nature-600 transition-colors">
+                            Ver detalles <i class="fa-solid fa-arrow-right ml-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                        </p>
+                    </div>
+                </div>
+            `;
+            
+            card.addEventListener('click', () => openModal(index));
+            grid.appendChild(card);
+        });
+
+        // 2. Lógica del Modal
+        const modalOverlay = document.getElementById('modal-overlay');
+        const closeModalBtn = document.getElementById('close-modal');
+        
+        const mTitle = document.getElementById('modal-title');
+        const mIcon = document.getElementById('modal-icon');
+        const mBgIcon = document.getElementById('modal-bg-icon');
+        const mIconContainer = document.getElementById('modal-icon-container');
+        const mConcept = document.getElementById('modal-concept');
+        const mObjectives = document.getElementById('modal-objectives');
+        const mVerified = document.getElementById('modal-verified');
+        const mLink = document.getElementById('modal-link');
+        const mLinkText = document.getElementById('modal-link-text');
+
+        function openModal(index) {
+            const data = challengesData[index];
+            
+            // Poblar datos
+            mTitle.textContent = data.title;
+            mConcept.textContent = data.concept;
+            mObjectives.textContent = data.objectives;
+            mVerified.textContent = data.verified;
+            mLink.href = data.link;
+            mLinkText.textContent = data.linkText;
+            
+            // Iconos y colores
+            mIcon.className = `fa-solid ${data.icon} ${data.colorClass}`;
+            mBgIcon.className = `fa-solid ${data.icon}`;
+            mIconContainer.className = `w-12 h-12 rounded-xl flex items-center justify-center text-xl shadow-inner ${data.bgClass}`;
+            
+            // Mostrar modal
+            modalOverlay.classList.remove('opacity-0', 'pointer-events-none');
+            modalOverlay.classList.add('active', 'opacity-100', 'pointer-events-auto');
+            document.body.style.overflow = 'hidden'; // Prevenir scroll
+        }
+
+        function closeModal() {
+            modalOverlay.classList.remove('active', 'opacity-100', 'pointer-events-auto');
+            modalOverlay.classList.add('opacity-0', 'pointer-events-none');
+            document.body.style.overflow = ''; // Restaurar scroll
+        }
+
+        closeModalBtn.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) closeModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // 3. Lógica del Acordeón
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const content = item.querySelector('.accordion-content');
+                const isActive = item.classList.contains('active');
+
+                // Cerrar todos
+                document.querySelectorAll('.accordion-item').forEach(accItem => {
+                    accItem.classList.remove('active');
+                    accItem.querySelector('.accordion-content').style.maxHeight = null;
+                });
+
+                // Abrir el clickeado si no estaba activo
+                if (!isActive) {
+                    item.classList.add('active');
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        });
+
+        // Abrir el primer item por defecto
+        window.addEventListener('DOMContentLoaded', () => {
+            const firstItem = document.querySelector('.accordion-item');
+            if(firstItem) {
+                firstItem.classList.add('active');
+                const firstContent = firstItem.querySelector('.accordion-content');
+                firstContent.style.maxHeight = firstContent.scrollHeight + "px";
+            }
+        });
+
+    </script>
+</body>
+</html>
 
