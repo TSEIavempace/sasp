@@ -1,10 +1,168 @@
-<!doctype html>
-<html>
-<head><meta charset="utf-8"><title>Sostenibilida - Índice</title></head>
-<body>
-  <h1>Trabajos y temario de Habilidades</h1>
-  <ul>
-    <li><a href="./tarea 1/">Tarea 1</a></li>
-  </ul>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Índice de Trabajos - Sostenibilidad</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            900: '#4c1d95',
+                        },
+                        eco: {
+                            50: '#ecfdf5',
+                            500: '#10b981',
+                            600: '#059669',
+                            900: '#064e3b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        
+        /* Utilidades de Glassmorphism */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -15px rgba(124, 58, 237, 0.15);
+            border-color: rgba(124, 58, 237, 0.3);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans relative overflow-x-hidden selection:bg-brand-500 selection:text-white">
+
+    <!-- Fondos decorativos (Blobs) -->
+    <div class="fixed top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-brand-500/20 mix-blend-multiply filter blur-[80px] opacity-70 z-[-1] animate-pulse" style="animation-duration: 8s;"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[600px] h-[600px] rounded-full bg-eco-500/20 mix-blend-multiply filter blur-[100px] opacity-70 z-[-1] animate-pulse" style="animation-duration: 12s; animation-delay: 2s;"></div>
+
+    <!-- MAIN CONTAINER -->
+    <main class="flex-grow w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 space-y-16 relative z-10">
+        
+        <!-- HEADER -->
+        <header class="text-center space-y-6 max-w-3xl mx-auto">
+            <div class="inline-flex items-center px-4 py-2 bg-white/80 text-brand-600 rounded-full text-sm font-bold tracking-widest border border-brand-100 shadow-sm backdrop-blur-sm uppercase">
+                <i class="fa-solid fa-graduation-cap mr-2"></i> FP Educación Infantil
+            </div>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-900 via-brand-600 to-eco-600 leading-tight pb-2">
+                Índice de Trabajos
+            </h1>
+            <p class="text-lg md:text-xl text-slate-600 font-medium max-w-2xl mx-auto">
+                Portafolio digital del módulo de <strong class="text-slate-800">Sostenibilidad </strong>. Accede a las tareas y prácticas de la asignatura.
+            </p>
+        </header>
+
+        <!-- GRID DE TAREAS -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-4">
+            
+            <!-- Tarea 1 -->
+            <a href="./tarea 1/" class="glass-card group rounded-3xl p-8 relative overflow-hidden flex flex-col h-full cursor-pointer focus:outline-none focus:ring-4 focus:ring-brand-500/50">
+                <div class="absolute -right-6 -top-6 w-24 h-24 rounded-full bg-blue-100 opacity-50 group-hover:scale-150 transition-transform duration-500 ease-out z-0"></div>
+                <div class="relative z-10 flex-grow">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-2xl shadow-sm mb-6 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 block">Unidad 1</span>
+                    <h2 class="text-2xl font-bold text-slate-800 mb-3 group-hover:text-brand-600 transition-colors">Tarea 1</h2>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Introducción y conceptos fundamentales aplicados al sistema productivo.
+                    </p>
+                </div>
+                <div class="relative z-10 mt-8 pt-6 border-t border-slate-100 flex justify-between items-center text-sm font-semibold text-brand-600">
+                    <span>Acceder al trabajo</span>
+                    <i class="fa-solid fa-arrow-right opacity-70 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-300"></i>
+                </div>
+            </a>
+
+            <!-- Tarea 2 -->
+            <a href="./tarea2/" class="glass-card group rounded-3xl p-8 relative overflow-hidden flex flex-col h-full cursor-pointer focus:outline-none focus:ring-4 focus:ring-brand-500/50">
+                <div class="absolute -right-6 -top-6 w-24 h-24 rounded-full bg-eco-100 opacity-50 group-hover:scale-150 transition-transform duration-500 ease-out z-0"></div>
+                <div class="relative z-10 flex-grow">
+                    <div class="w-14 h-14 rounded-2xl bg-eco-50 text-eco-600 flex items-center justify-center text-2xl shadow-sm mb-6 group-hover:scale-110 group-hover:bg-eco-600 group-hover:text-white transition-all duration-300">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 block">Unidad 2</span>
+                    <h2 class="text-2xl font-bold text-slate-800 mb-3 group-hover:text-eco-600 transition-colors">Tarea 2</h2>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Retos medioambientales y Objetivos de Desarrollo Sostenible (ODS).
+                    </p>
+                </div>
+                <div class="relative z-10 mt-8 pt-6 border-t border-slate-100 flex justify-between items-center text-sm font-semibold text-eco-600">
+                    <span>Acceder al trabajo</span>
+                    <i class="fa-solid fa-arrow-right opacity-70 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-300"></i>
+                </div>
+            </a>
+
+            <!-- Próxima Tarea (Placeholder) -->
+            <div class="glass-card rounded-3xl p-8 border-dashed border-2 border-slate-300 bg-white/40 flex flex-col items-center justify-center text-center h-full hover:bg-white/60 transition-colors cursor-default">
+                <div class="w-16 h-16 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center text-2xl mb-4">
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-500 mb-2">Próxima Tarea</h3>
+                <p class="text-slate-400 text-sm">
+                    Disponible próximamente a medida que avance el curso.
+                </p>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- FOOTER ACADÉMICO -->
+    <footer class="mt-auto glass-panel border-t border-white/50 py-10 text-center relative z-10">
+        <div class="max-w-4xl mx-auto px-4 space-y-4">
+            <h4 class="font-bold text-lg text-slate-800 tracking-wide">IES Avempace · Zaragoza</h4>
+            <div class="h-px w-16 bg-brand-300 mx-auto rounded-full"></div>
+            <p class="text-sm text-slate-600">
+                Portafolio elaborado por <span class="font-bold text-brand-600">Ana Maria da Cunha Goncalves</span>
+            </p>
+            <p class="text-xs text-slate-500 uppercase tracking-widest pt-2">
+                © <span id="year">2026</span> Todos los derechos reservados
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Actualizar el año del footer si fuera necesario
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
